@@ -17,9 +17,7 @@ export default class TareasRepositoryPostgres implements TareasRepository {
                 fechaCreacion: tarea.fechaCreacion,
                 fechaFinal: tarea.fechaFinal,
                 estado: tarea.estado,
-                usuario: {
-                    email: tarea.usuario,
-                }
+                usuario: tarea.usuario
             }
         })
     }

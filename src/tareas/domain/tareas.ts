@@ -8,5 +8,5 @@ export default interface Tarea {
     fechaCreacion?: Date,
     fechaFinal: Date,
     estado: boolean,
-    usuario: Usuario,
+    usuario: number,
 }
