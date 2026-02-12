@@ -5,7 +5,7 @@
   "license": "ISC",
   "author": "",
   "scripts": {
-    "dev": "nodemon index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts"
   },
   "dependencies": {
     "@types/express": "^5.0.6",
@@ -16,6 +16,8 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
-    "@types/pg": "^8.16.0"
+    "@types/pg": "^8.16.0",
+    "nodemon": "^3.1.11",
+    "ts-node": "^10.9.2"
   }
 }
