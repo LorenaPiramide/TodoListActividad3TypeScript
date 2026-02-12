@@ -11,7 +11,7 @@ const dbName = process.env.POSTGRES_DB;
 const pool = new Pool({
     max: 1000,
     connectionString: `postgres://${dbUser}:${dbPassword}@${dbHost}:5432/${dbName}`,
-    idleTimeoutMillis: 30000,
+    idleTimeoutMillis: 30000
 });
 
 const executeQuery = async (sql: any, data?: any[]): Promise<any> => {

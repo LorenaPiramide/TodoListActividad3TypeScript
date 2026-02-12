@@ -25,7 +25,7 @@ export default class TareasRepositoryPostgres implements TareasRepository {
     }
 
     async createTask(tarea: Tarea): Promise<Tarea> {
-        const query = `INSERT INTO tareas (usuario_id, texto, prioridad, fecha_creacion, fecha_finalizacion, estado) VALUES ('${tarea.usuario.id}', '${tarea.texto}', '${tarea.prioridad}', now(), '${tarea.fecha_finalizacion}', '${tarea.estado}'`;
+        const query = `INSERT INTO tareas (texto, prioridad, fecha_finalizacion, estado, creador) VALUES ('${tarea.texto}', '${tarea.prioridad}', now(), '${tarea.fechaFinal}', '${tarea.estado}'`;
         const results: any = await executeQuery(query);
         tarea.id = results[0].id;
         tarea.fechaCreacion = results[0].fecha_creacion;
@@ -44,7 +44,7 @@ export default class TareasRepositoryPostgres implements TareasRepository {
         return tarea;
     }
 
-    async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
-        const query = `INSERT INTO tareas_usuarios ()`
-    }
+    // async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
+    //     const query = `INSERT INTO tareas_usuarios ()`
+    // }
 }
