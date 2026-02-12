@@ -11,14 +11,14 @@ const tareaUseCases: TareasUseCases = new TareasUseCases(
 )
 
 router.post(
-    "/tareas",
+    "/",
     async (req: Request, res: Response) => {
         console.log("dfsgd");
         try {
             const tarea: Tarea = {
                 texto: req.body.texto,
                 prioridad: req.body.prioridad,
-                fechaFinal: req.body.fecha_finalizacion,
+                fechaFinal: req.body.fechaFinal,
                 estado: req.body.estado,
                 usuario: req.body.usuario
             }

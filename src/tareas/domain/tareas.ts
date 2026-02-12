@@ -5,8 +5,8 @@ export default interface Tarea {
     id?: number;
     texto: String;
     prioridad: Prioridad,
-    fechaCreacion?: Date,
-    fechaFinal: Date,
+    fechaCreacion?: String,
+    fechaFinal: String,
     estado: boolean,
     usuario: number,
 }
