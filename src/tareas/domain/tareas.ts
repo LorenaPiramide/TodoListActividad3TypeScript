@@ -9,5 +9,5 @@ export default interface Tarea {
     fechaFinal: Date,
     estado: boolean,
     usuario: Usuario,
-    usuariosAsignados: Array<Usuario>
+    usuariosAsignados?: Array<Usuario>
 }
