@@ -4,20 +4,23 @@ import Usuario from "../../domain/usuario";
 
 export default class UsuariosRepositoryPostgres implements UsuarioRepository {
     async save(email: String, password: String): Promise<void> {
-        
-    }
-
-    async login(email: String, password: String): Promise<Usuario | null> {
-        
-        // TODO: arreglar
         const query = `INSERT INTO usuarios (correo, password) VALUES ('${email}', '${password}')`;
         const result = await executeQuery(query);
-        if (result.length === 0) return null;
+        if (!result) {
+            throw new Error("Error guardando usuario.")
+        }
+    }
 
+    async findByEmail(email: String): Promise<Usuario | null> {
+        const query = `SELECT * FROM usuarios WHERE correo = '${email}'`;
+        const result: any[] = await executeQuery(query);
+        if (result.length === 0) {
+            return null;
+        }
         const user = result[0];
         return {
-            email: user.email,
-            password: user.password
+            email: user.correo,
+            password: user.password,
         };
     }
 }

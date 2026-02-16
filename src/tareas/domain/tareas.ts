@@ -1,4 +1,3 @@
-import Usuario from "../../usuarios/domain/usuario";
 import Prioridad from "../domain/prioridad";
 
 export default interface Tarea {
