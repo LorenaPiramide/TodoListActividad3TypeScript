@@ -24,10 +24,7 @@ export default class TareasRepositoryPostgres implements TareasRepository {
 
     async createTask(tarea: Tarea): Promise<Tarea> {
         const query = `INSERT INTO tareas (texto, prioridad, fecha_finalizacion, estado, creador) VALUES ('${tarea.texto}', '${tarea.prioridad}', '${tarea.fechaFinal}', '${tarea.estado}', '${tarea.usuario}') returning *`;
-        console.log(query);
-        
         const results: any = await executeQuery(query);
-        
         tarea.fechaCreacion = results[0].fecha_creacion;
         return tarea;
     }
