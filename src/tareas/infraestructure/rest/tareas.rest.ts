@@ -19,8 +19,7 @@ const tareaUseCases: TareasUseCases = new TareasUseCases(
 
 router.post(
     "/",
-    async (req: Request, res: Response) => {
-        console.log("dfsgd");
+     async (req: Request, res: Response) => {
         try {
             const tarea: Tarea = {
                 texto: req.body.texto,
@@ -29,7 +28,10 @@ router.post(
                 estado: req.body.estado,
                 usuario: req.body.usuario
             }
-            tareaUseCases.createTask(tarea)
+            const tareaResult =  await tareaUseCases.createTask(tarea)
+            console.log(tareaResult);
+            
+            res.send(tareaResult)
         } catch (error: any) {
             res.status(400).send({ message: error.message });
         }

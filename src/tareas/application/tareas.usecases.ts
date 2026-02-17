@@ -10,7 +10,8 @@ export default class TareasUseCases {
     }
 
     async createTask(tarea: Tarea): Promise<Tarea> {
-        return this.tareasRepository.createTask(tarea);
+        const tareaResult = await this.tareasRepository.createTask(tarea);        
+        return tareaResult
     }
 
     async changeState(tarea: Tarea): Promise<Tarea> {
