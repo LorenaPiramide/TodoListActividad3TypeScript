@@ -6,7 +6,7 @@ export default interface TareasRepository {
     createTask(tarea: Tarea): Promise<Tarea>;
     changeState(tarea: Tarea): Promise<Tarea>;
     updateTask(tarea: Tarea): Promise<Tarea>;
-    // assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea>;
+    assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea>;
     // Obtener todos los detalles de una tarea en específico
     //getAllTarea(tarea: Tarea): Promise<Tarea>;
 }

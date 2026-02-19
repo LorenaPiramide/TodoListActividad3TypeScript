@@ -38,4 +38,14 @@ routerTareas.post(
     }
 )
 
+routerTareas.put(
+    "/:id", isAuth, async (req: Request, res: Response) => {
+        try {
+            
+        } catch (error: any) {
+            res.status(400).send({ message: error.message });
+        }
+    }
+)
+
 export default routerTareas;

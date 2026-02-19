@@ -22,9 +22,9 @@ export default class TareasUseCases {
         return this.tareasRepository.updateTask(tarea);
     }
 
-    // async assignTask(tarea: Tarea, usuario: Usuario): Promise<Tarea> {
-    //     return this.tareasRepository.assignTask(tarea, usuario);
-    // }
+    async assignTask(tarea: Tarea, usuario: Usuario): Promise<Tarea> {
+        return this.tareasRepository.assignTask(tarea, usuario);
+    }
 
     // async getAllTarea(tarea: Tarea): Promise<Tarea> {
     //     return this.tareasRepository.getAllTarea(tarea);

@@ -40,7 +40,7 @@ export default class TareasRepositoryPostgres implements TareasRepository {
         return tarea;
     }
 
-    // async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
-    //     const query = `INSERT INTO tareas_usuarios ()`
-    // }
+    async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
+        const query = `INSERT INTO tareas_usuarios ()`
+    }
 }
