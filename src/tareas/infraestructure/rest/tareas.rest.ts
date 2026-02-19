@@ -10,7 +10,7 @@ const routerTareas = express.Router();
 const tareaUseCases: TareasUseCases = new TareasUseCases(
     new TareasRepositoryPostgres()
 )
-// TODO: Falta probar
+
 routerTareas.get("/", isAuth, async (req: Request, res: Response) => {
     try {
         const tareas = await tareaUseCases.getByUser(req.body.auth);
@@ -21,15 +21,14 @@ routerTareas.get("/", isAuth, async (req: Request, res: Response) => {
 })
 
 routerTareas.post(
-    "/",
-     async (req: Request, res: Response) => {
+    "/", isAuth, async (req: Request, res: Response) => {
         try {
             const tarea: Tarea = {
                 texto: req.body.texto,
                 prioridad: req.body.prioridad,
                 fechaFinal: req.body.fechaFinal,
                 estado: req.body.estado,
-                usuario: req.body.usuario
+                email: req.body.auth.email
             }
             const tareaResult =  await tareaUseCases.createTask(tarea)            
             res.send(tareaResult)

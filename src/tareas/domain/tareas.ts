@@ -7,5 +7,5 @@ export default interface Tarea {
     fechaCreacion?: String,
     fechaFinal: String,
     estado: boolean,
-    usuario: number,
+    email: String,
 }

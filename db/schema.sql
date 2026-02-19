@@ -1,7 +1,7 @@
 
 CREATE TABLE usuarios(
     id SERIAL PRIMARY KEY,
-    password VARCHAR(50),
+    password VARCHAR(255),
     correo VARCHAR(50) UNIQUE
 );
 
