@@ -1,15 +1,9 @@
 import express from 'express';
-import Tarea from './tareas/domain/tareas';
-import Prioridad from './tareas/domain/prioridad';
-import TareasRepository from './tareas/domain/tareas.repository';
-import router from './tareas/infraestructure/rest/tareas.rest';
+import routerTareas from './tareas/infraestructure/rest/tareas.rest';
+import routerUsuarios from './usuarios/infraestructure/rest/usuarios.rest';
 
 import dotenv from "dotenv";
 import cors from "cors";
-import * as https from "https";
-import * as fs from "fs";
-import Usuario from './usuarios/domain/usuario';
-import TareasRepositoryPostgres from './tareas/infraestructure/db/tareas.postgre';
 
 dotenv.config();
 const port = process.env.PORT;
@@ -23,7 +17,8 @@ app.use(express.json());
 app.use(cors(options));
 
 const api = "/api";
-app.use(api + `/tareas`, router)
+app.use(api + `/tareas`, routerTareas)
+app.use(api + `/usuarios`, routerUsuarios)
 
 app.listen(8080, () => {
     console.log('ya tira');

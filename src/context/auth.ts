@@ -37,23 +37,4 @@ const isAuth = (req: Request, response: Response, next: NextFunction) => {
   }
 };
 
-const isConserje = (req: Request, response: Response, next: NextFunction) => {
-  try {
-    const authHeader = req.headers["authorization"];
-    const token: string | undefined = authHeader && authHeader.split(" ")[1];
-    if (token) {
-      const decoded: any = jwt.verify(token, SECRET_KEY);
-      if (isNaN(decoded.email.split("@")[0])) {
-        req.body.auth = decoded;
-        next();
-      } else {
-        response.status(401).json({ message: "No autorizado" });
-      }
-    }
-  } catch (err) {
-    console.error(err);
-    response.status(401).json({ message: "No autorizado" });
-  }
-};
-
-export { decode, createToken, isAuth, isConserje };
+export { decode, createToken, isAuth };

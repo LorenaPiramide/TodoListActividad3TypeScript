@@ -2,14 +2,14 @@ import express, { Request, Response } from "express";
 
 import UsuariosUseCases from "../../application/usuarios.usecases";
 import UsuariosRepositoryPostgres from "../db/usuarios.postgre";
-import Auth, { isAuth } from "../../../context/auth";
+import Auth from "../../../context/auth";
 
-const router = express.Router();
+const routerUsuarios = express.Router();
 const usuariosUseCases: UsuariosUseCases = new UsuariosUseCases(
     new UsuariosRepositoryPostgres()
 );
 
-router.post("/registro", async (req: Request, res: Response) => {
+routerUsuarios.post("/registro", async (req: Request, res: Response) => {
     try {
         await usuariosUseCases.save(req.body.email, req.body.password);
         res.status(201).send({ message: "Usuario creado" });
@@ -18,7 +18,7 @@ router.post("/registro", async (req: Request, res: Response) => {
     }
 })
 
-router.post("/entrar", async (req: Request, res: Response) => {
+routerUsuarios.post("/login", async (req: Request, res: Response) => {
   try {
     const result: Auth | false = await usuariosUseCases.login(
       req.body.email,
@@ -47,3 +47,5 @@ router.post("/entrar", async (req: Request, res: Response) => {
     res.status(400).send({ message: error.message });
   }
 });
+
+export default routerUsuarios;

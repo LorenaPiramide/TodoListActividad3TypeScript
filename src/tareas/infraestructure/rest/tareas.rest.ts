@@ -5,13 +5,13 @@ import TareasRepositoryPostgres from "../db/tareas.postgre";
 import Tarea from "../../domain/tareas";
 import { isAuth } from "../../../context/auth";
 
-const router = express.Router();
+const routerTareas = express.Router();
 
 const tareaUseCases: TareasUseCases = new TareasUseCases(
     new TareasRepositoryPostgres()
 )
 // TODO: Falta probar
-router.get("/", isAuth, async (req: Request, res: Response) => {
+routerTareas.get("/", isAuth, async (req: Request, res: Response) => {
     try {
         const tareas = await tareaUseCases.getByUser(req.body.auth);
         res.status(200).send(tareas);
@@ -20,7 +20,7 @@ router.get("/", isAuth, async (req: Request, res: Response) => {
     }
 })
 
-router.post(
+routerTareas.post(
     "/",
      async (req: Request, res: Response) => {
         try {
@@ -39,4 +39,4 @@ router.post(
     }
 )
 
-export default router;
+export default routerTareas;
