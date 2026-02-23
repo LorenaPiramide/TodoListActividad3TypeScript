@@ -41,6 +41,8 @@ export default class TareasRepositoryPostgres implements TareasRepository {
     }
 
     async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
-        const query = `INSERT INTO tareas_usuarios ()`
+        const query = `INSERT INTO tareas_usuarios (tarea_id, usuario_id) VALUES ('${tarea.id}', '${asignado}')`; // Creo que no va porque necesito el id
+        await executeQuery(query);
+        return tarea;
     }
 }

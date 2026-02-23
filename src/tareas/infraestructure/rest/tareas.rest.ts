@@ -4,6 +4,7 @@ import TareasUseCases from "../../application/tareas.usecases";
 import TareasRepositoryPostgres from "../db/tareas.postgre";
 import Tarea from "../../domain/tareas";
 import { isAuth } from "../../../context/auth";
+import TareaUsuario from "../../domain/tarea_usuario";
 
 const routerTareas = express.Router();
 
@@ -44,6 +45,21 @@ routerTareas.put(
             
         } catch (error: any) {
             res.status(400).send({ message: error.message });
+        }
+    }
+)
+
+routerTareas.post(
+    "/:id/usuario", isAuth, async (req: Request, res: Response) => {
+        try {
+            const tareaUsuario: TareaUsuario = {
+                idTarea: req.body.idTarea,
+                idUsuario: req.body.idUsuario
+            }
+            const tareaUsuarioResult = await tareaUseCases.assignTask(tareaUsuario, tareaUsuario) // FIXME: Ni idea
+            res.send(tareaUsuarioResult)
+        } catch (error: any) {
+            res.status(400).send({ message: error.message })
         }
     }
 )
