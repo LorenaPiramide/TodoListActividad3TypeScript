@@ -28,6 +28,14 @@ export default class TareasRepositoryPostgres implements TareasRepository {
         return tarea;
     }
 
+    async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
+        const query = `INSERT INTO tareas_usuarios (tarea_id, usuario_id) VALUES ('${tarea.id}', '${asignado.id}')`;
+        console.log(query);
+        
+        await executeQuery(query);
+        return tarea;
+    }
+
     async changeState(tarea: Tarea): Promise<Tarea> {
         const query = `UPDATE tareas SET estado = '${tarea.estado}' WHERE id = '${tarea.id}'`;
         await executeQuery(query);
@@ -36,12 +44,6 @@ export default class TareasRepositoryPostgres implements TareasRepository {
 
     async updateTask(tarea: Tarea): Promise<Tarea> {
         const query = `UPDATE tareas SET (texto, prioridad, estado) values ('${tarea.texto}', '${tarea.prioridad}', '${tarea.estado}') WHERE id = '${tarea.id}'`;
-        await executeQuery(query);
-        return tarea;
-    }
-
-    async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
-        const query = `INSERT INTO tareas_usuarios (tarea_id, usuario_id) VALUES ('${tarea.id}', '${asignado}')`; // Creo que no va porque necesito el id
         await executeQuery(query);
         return tarea;
     }
