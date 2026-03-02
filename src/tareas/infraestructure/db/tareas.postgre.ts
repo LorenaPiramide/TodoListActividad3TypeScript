@@ -22,6 +22,7 @@ export default class TareasRepositoryPostgres implements TareasRepository {
     }
 
     async createTask(tarea: Tarea): Promise<Tarea> {
+        // Hay una consulta dentro de otra porque del creador solo tenemos el email y con esto podremos añadir el id del creador, que es lo que necesitamos
         const query = `INSERT INTO tareas (texto, prioridad, fecha_finalizacion, estado, creador) VALUES ('${tarea.texto}', '${tarea.prioridad}', '${tarea.fechaFinal}', '${tarea.estado}', (SELECT id FROM usuarios WHERE correo = '${tarea.email}')) returning *`;
         const results: any = await executeQuery(query);
         tarea.fechaCreacion = results[0].fecha_creacion;
@@ -29,8 +30,8 @@ export default class TareasRepositoryPostgres implements TareasRepository {
     }
 
     async assignTask(tarea: Tarea, asignado: Usuario): Promise<Tarea> {
-        const query = `INSERT INTO tareas_usuarios (tarea_id, usuario_id) VALUES ('${tarea.id}', '${asignado.id}')`;
-        console.log(query);
+        const query = `INSERT INTO tareas_usuarios (tarea_id, usuario_id) VALUES ('${tarea.id}', '${asignado.id})'`;
+        // console.log(query);
         
         await executeQuery(query);
         return tarea;
@@ -43,7 +44,7 @@ export default class TareasRepositoryPostgres implements TareasRepository {
     }
 
     async updateTask(tarea: Tarea): Promise<Tarea> {
-        const query = `UPDATE tareas SET (texto, prioridad, estado) values ('${tarea.texto}', '${tarea.prioridad}', '${tarea.estado}') WHERE id = '${tarea.id}'`;
+        const query = `UPDATE tareas SET (texto, prioridad, estado) values ('${tarea.texto}', '${tarea.prioridad}', '${tarea.estado}')`;
         await executeQuery(query);
         return tarea;
     }

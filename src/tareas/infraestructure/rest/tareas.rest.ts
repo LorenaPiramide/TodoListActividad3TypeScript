@@ -61,7 +61,12 @@ routerTareas.put(
 routerTareas.put(
     "/:id/estado", isAuth, async (req: Request, res: Response) => {
         try {
-            
+            const tarea: Tarea = {
+                id: Number(req.params.id),
+                estado: Boolean(req.body.estado)
+            }
+            const tareaResult = await tareaUseCases.changeState(tarea);
+            res.send(tareaResult);
         } catch (error: any) {
             res.status(400).send({ message: error.message })
         }
