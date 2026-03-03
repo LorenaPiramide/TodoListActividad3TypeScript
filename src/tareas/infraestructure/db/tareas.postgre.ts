@@ -44,7 +44,13 @@ export default class TareasRepositoryPostgres implements TareasRepository {
     }
 
     async updateTask(tarea: Tarea): Promise<Tarea> {
-        const query = `UPDATE tareas SET (texto, prioridad, estado) values ('${tarea.texto}', '${tarea.prioridad}', '${tarea.estado}')`;
+        const query = `UPDATE tareas SET texto = '${tarea.texto}', prioridad = '${tarea.prioridad}', estado = '${tarea.estado}' WHERE id = '${tarea.id}'`;
+        await executeQuery(query);
+        return tarea;
+    }
+
+    async getAllTarea(tarea: Tarea): Promise<Tarea> {
+        const query = `SELECT * FROM tareas WHERE id = '${tarea.id}'`;
         await executeQuery(query);
         return tarea;
     }

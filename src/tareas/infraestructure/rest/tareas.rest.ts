@@ -6,6 +6,7 @@ import Tarea from "../../domain/tareas";
 import { isAuth } from "../../../context/auth";
 import TareaUsuario from "../../domain/tarea_usuario";
 import Usuario from "../../../usuarios/domain/usuario";
+import Prioridad from "../../domain/prioridad";
 
 const routerTareas = express.Router();
 
@@ -66,6 +67,23 @@ routerTareas.put(
                 estado: Boolean(req.body.estado)
             }
             const tareaResult = await tareaUseCases.changeState(tarea);
+            res.send(tareaResult);
+        } catch (error: any) {
+            res.status(400).send({ message: error.message })
+        }
+    }
+)
+
+routerTareas.put(
+    "/:id/datos", isAuth, async (req: Request, res: Response) => {
+        try {
+            const tarea: Tarea = {
+                id: Number(req.params.id),
+                texto: String(req.body.texto),
+                prioridad: req.body.prioridad,
+                estado: Boolean(req.body.estado)
+            }
+            const tareaResult = await tareaUseCases.updateTask(tarea);
             res.send(tareaResult);
         } catch (error: any) {
             res.status(400).send({ message: error.message })
