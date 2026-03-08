@@ -1,4 +1,3 @@
-
 CREATE TABLE usuarios(
     id SERIAL PRIMARY KEY,
     password VARCHAR(255),
