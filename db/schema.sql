@@ -5,7 +5,7 @@ CREATE TABLE usuarios(
 );
 
 CREATE TABLE tareas(
-    SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     texto VARCHAR(100),
     prioridad VARCHAR(50),
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -14,6 +14,7 @@ CREATE TABLE tareas(
     creador INT,
     CONSTRAINT fk_creador FOREIGN KEY (creador) REFERENCES usuarios(id) ON DELETE CASCADE
 );
+
 CREATE TABLE tareas_usuarios (
     tarea_id INT REFERENCES tareas(id) ON DELETE CASCADE,
     usuario_id INT REFERENCES usuarios(id) ON DELETE CASCADE,
