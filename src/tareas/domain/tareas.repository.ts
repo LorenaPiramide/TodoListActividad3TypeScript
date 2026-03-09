@@ -8,5 +8,5 @@ export default interface TareasRepository {
     changeState(tarea: Tarea): Promise<Tarea>;
     updateTask(tarea: Tarea): Promise<Tarea>;
     // Obtener todos los detalles de una tarea en específico
-    getAllTarea(tarea: Tarea): Promise<Tarea>;
+    getAllTarea(tarea: Tarea, usuario: Usuario): Promise<Tarea>;
 }
