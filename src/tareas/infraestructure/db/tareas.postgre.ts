@@ -51,9 +51,9 @@ export default class TareasRepositoryPostgres implements TareasRepository {
         return tarea;
     }
 
-    async getAllTarea(tarea: Tarea): Promise<Tarea> {
-        const query = `SELECT * FROM tareas where id = ${tarea.id}`;
-        const result = await executeQuery(query);
-        return result;
+    async getTarea(tarea: Tarea): Promise<Tarea> {
+        const query = `SELECT * FROM tareas WHERE id = ${tarea.id}`;
+        const resultado = await executeQuery(query);
+        return resultado;
     }
 }

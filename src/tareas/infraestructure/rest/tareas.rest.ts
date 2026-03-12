@@ -95,7 +95,7 @@ routerTareas.get(
             const tarea: Tarea = {
                 id: Number(req.params.id)
             }
-            const tareaResult = await tareaUseCases.getAllTarea(tarea);
+            const tareaResult = await tareaUseCases.getTarea(tarea);
             res.send(tareaResult);
         } catch (error: any) {
             res.status(400).send({ message: error.mensaje });

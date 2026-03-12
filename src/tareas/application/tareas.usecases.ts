@@ -26,7 +26,7 @@ export default class TareasUseCases {
         return this.tareasRepository.updateTask(tarea);
     }
 
-    async getAllTarea(tarea: Tarea): Promise<Tarea> {
-        return this.tareasRepository.getAllTarea(tarea);
+    async getTarea(tarea: Tarea): Promise<Tarea> {
+        return this.tareasRepository.getTarea(tarea);
     }
 }
