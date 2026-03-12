@@ -4,9 +4,7 @@ import TareasUseCases from "../../application/tareas.usecases";
 import TareasRepositoryPostgres from "../db/tareas.postgre";
 import Tarea from "../../domain/tareas";
 import { isAuth } from "../../../context/auth";
-import TareaUsuario from "../../domain/tarea_usuario";
 import Usuario from "../../../usuarios/domain/usuario";
-import Prioridad from "../../domain/prioridad";
 
 const routerTareas = express.Router();
 
@@ -87,6 +85,20 @@ routerTareas.put(
             res.send(tareaResult);
         } catch (error: any) {
             res.status(400).send({ message: error.message })
+        }
+    }
+)
+
+routerTareas.get(
+    "/:id", isAuth, async (req: Request, res: Response) => {
+        try {
+            const tarea: Tarea = {
+                id: Number(req.params.id)
+            }
+            const tareaResult = await tareaUseCases.getAllTarea(tarea);
+            res.send(tareaResult);
+        } catch (error: any) {
+            res.status(400).send({ message: error.mensaje });
         }
     }
 )

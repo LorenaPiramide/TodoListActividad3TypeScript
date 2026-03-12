@@ -51,13 +51,9 @@ export default class TareasRepositoryPostgres implements TareasRepository {
         return tarea;
     }
 
-    async getAllTarea(tarea: Tarea, usuario: Usuario): Promise<Tarea> {
-        const query = `SELECT t.id, t.texto, t.prioridad, t.fecha_creacion, t.fecha_finalizacion, t.estado, t.creador, u.id AS usuario_id, u.correo
-            FROM tareas t
-            JOIN tareas_usuarios tu ON t.id = '${tarea.id}'
-            JOIN usuarios u ON '${usuario.id}' = u.id
-            WHERE t.id = '${tarea.id}'`;
-        await executeQuery(query);
-        return tarea;
+    async getAllTarea(tarea: Tarea): Promise<Tarea> {
+        const query = `SELECT * FROM tareas where id = ${tarea.id}`;
+        const result = await executeQuery(query);
+        return result;
     }
 }
